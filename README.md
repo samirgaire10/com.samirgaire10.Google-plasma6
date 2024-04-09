@@ -1,4 +1,4 @@
-# Brave search widget for plasma 6
+# Google search widget for plasma 6
 
 <h1 align="center">
 
