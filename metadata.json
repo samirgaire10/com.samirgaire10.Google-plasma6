@@ -1,0 +1,20 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "samirgaire10"
+            }
+        ],
+        "Category": "Online Services",
+        "Description": "Add a google search on your desktop.",
+        "Icon": "applications-internet",
+        "Id": "com.samirgaire10.Google-plasma6",
+        "License": "GPL-2.0+",
+        "Name": "Google search",
+        "Website": "https://github.com/samirgaire10/com.samirgaire10.Google-plasma6.git",
+        "github": "https://github.com/samirgaire10/"
+
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
