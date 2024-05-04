@@ -173,8 +173,8 @@ PlasmoidItem {
             Layout.fillHeight: true
 
             // TODO use contentsSize but that crashes, now mostly for some sane initial size
-            Layout.preferredWidth: Kirigami.Units.gridUnit * 36
-            Layout.preferredHeight: Kirigami.Units.gridUnit * 18
+            Layout.preferredWidth: Kirigami.Units.gridUnit * 40
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 100
 
             // Binding it to e.g. width will be super slow on resizing
             Timer {
