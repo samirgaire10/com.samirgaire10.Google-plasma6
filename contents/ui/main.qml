@@ -247,7 +247,7 @@ PlasmoidItem {
 
                 Connections {
                     target: plasmoid.configuration
-
+                
                     function onMinViewWidthChanged() {updateZoomTimer.start()}
 
                     function onUseMinViewWidthChanged() {updateZoomTimer.start()}
