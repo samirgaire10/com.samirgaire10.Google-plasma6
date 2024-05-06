@@ -67,8 +67,8 @@ PlasmoidItem {
                 text: i18nc("@action:button", "Go Home")
 
                 onClicked:{
-                    var braveurl = 'https://google.com/'
-                    gptWebView.url = braveurl ;
+                    var googleurl = 'https://google.com/'
+                    gptWebView.url = googleurl ;
                 }
             }
 
