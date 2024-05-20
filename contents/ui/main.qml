@@ -18,7 +18,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.components 3.0 as PC3
 
 PlasmoidItem {
-    id: root
+    id: googleroot
 
     switchWidth: Kirigami.Units.gridUnit * 16
     switchHeight: Kirigami.Units.gridUnit * 23
@@ -43,9 +43,9 @@ PlasmoidItem {
             acceptedButtons: Qt.LeftButton
 
             onPressedChanged: if (pressed) {
-                wasExpanded = root.expanded;
+                wasExpanded = googleroot.expanded;
             }
-            onTapped: root.expanded = !wasExpanded
+            onTapped: googleroot.expanded = !wasExpanded
         }
 
         Kirigami.Icon {
@@ -56,8 +56,8 @@ PlasmoidItem {
     }
 
     fullRepresentation: ColumnLayout {
-        Layout.minimumWidth: root.switchWidth
-        Layout.minimumHeight: root.switchHeight
+        Layout.minimumWidth: googleroot.switchWidth
+        Layout.minimumHeight: googleroot.switchHeight
 
         RowLayout{
             Layout.fillWidth: true
@@ -68,22 +68,22 @@ PlasmoidItem {
 
                 onClicked:{
                     var googleurl = 'https://google.com/'
-                    gptWebView.url = googleurl ;
+                    googlewebview.url = googleurl ;
                 }
             }
 
 
             PlasmaComponents3.Button {
                 icon.name: "go-previous"
-                onClicked: gptWebView.goBack()
-                enabled: gptWebView.canGoBack
+                onClicked: googlewebview.goBack()
+                enabled: googlewebview.canGoBack
                 display: PlasmaComponents3.AbstractButton.IconOnly
                 text: i18nc("@action:button", "Go Back")
             }
             PlasmaComponents3.Button {
                 icon.name: "go-next"
-                onClicked: gptWebView.goForward()
-                enabled: gptWebView.canGoForward
+                onClicked: googlewebview.goForward()
+                enabled: googlewebview.canGoForward
                 display: PlasmaComponents3.AbstractButton.IconOnly
                 text: i18nc("@action:button", "Go Forward")
             }
@@ -94,7 +94,7 @@ PlasmoidItem {
                     if (url.indexOf(":/") < 0) {
                         url = "http://" + url;
                     }
-                    gptWebView.url = url;
+                    googlewebview.url = url;
                 }
                 onActiveFocusChanged: {
                     if (activeFocus) {
@@ -102,7 +102,7 @@ PlasmoidItem {
                     }
                 }
 
-                text: gptWebView.url
+                text: googlewebview.url
 
                 Accessible.description: text.length > 0 ? text : i18nc("@info", "Type a URL")
             }
@@ -139,9 +139,9 @@ PlasmoidItem {
 
             PlasmaComponents3.Button {
                 display: PlasmaComponents3.AbstractButton.IconOnly
-                icon.name: gptWebView.loading ? "process-stop" : "view-refresh"
-                text: gptWebView.loading ? i18nc("@action:button", "Stop Loading This Page") : i18nc("@action:button", "Reload This Page")
-                onClicked: gptWebView.loading ? gptWebView.stop() : gptWebView.reload()
+                icon.name: googlewebview.loading ? "process-stop" : "view-refresh"
+                text: googlewebview.loading ? i18nc("@action:button", "Stop Loading This Page") : i18nc("@action:button", "Reload This Page")
+                onClicked: googlewebview.loading ? googlewebview.stop() : googlewebview.reload()
             }
 
             PlasmaComponents3.ToolButton {
@@ -201,15 +201,15 @@ PlasmoidItem {
                     var newZoom = 1;
                     if (useMinViewWidth) {
                         // Try to fit contents for a smaller screen
-                        newZoom = Math.min(1, gptWebView.width / minViewWidth);
+                        newZoom = Math.min(1, googlewebview.width / minViewWidth);
                         // make sure value is valid
                         newZoom = Math.max(0.25, newZoom);
                     } else {
                         newZoom = constantZoomFactor / 100.0;
                     }
-                    gptWebView.zoomFactor = newZoom;
+                    googlewebview.zoomFactor = newZoom;
                     // setting the zoom factor does not always work on the first try; also, numbers get rounded
-                    if (Math.round(1000 * gptWebView.zoomFactor) != Math.round(1000 * newZoom)) {
+                    if (Math.round(1000 * googlewebview.zoomFactor) != Math.round(1000 * newZoom)) {
                         updateZoomTimer.restart();
                     }
                 }
@@ -220,7 +220,7 @@ PlasmoidItem {
             // there's a FIXME comment about that in QQuickWebEngineViewPrivate::contextMenuRequested
             PlasmaExtras.Menu {
                 id: linkContextMenu
-                visualParent: gptWebView
+                visualParent: googlewebview
 
                 property string link
 
@@ -233,12 +233,12 @@ PlasmoidItem {
                 PlasmaExtras.MenuItem {
                     text: i18nc("@action:inmenu", "Copy Link Address")
                     icon: "edit-copy"
-                    onClicked: gptWebView.triggerWebAction(WebEngineView.CopyLinkToClipboard)
+                    onClicked: googlewebview.triggerWebAction(WebEngineView.CopyLinkToClipboard)
                 }
             }
 
             WebEngineView {
-                id: gptWebView
+                id: googlewebview
                 anchors.fill: parent
                 onUrlChanged: plasmoid.configuration.url = url;
                 Component.onCompleted: url = plasmoid.configuration.url;
@@ -315,9 +315,9 @@ PlasmoidItem {
                 acceptedButtons: Qt.BackButton | Qt.ForwardButton
                 onPressed: mouse => {
                     if (mouse.button === Qt.BackButton) {
-                        gptWebView.goBack();
+                        googlewebview.goBack();
                     } else if (mouse.button === Qt.ForwardButton) {
-                        gptWebView.goForward();
+                        googlewebview.goForward();
                     }
                 }
             }
